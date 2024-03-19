@@ -65,7 +65,7 @@ class Food:
     def draw(self, surface):
         x, y = self.position
         pygame.draw.rect(surface, RED, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-
+     
 def main():
     high_score = 0  # Initialize high score
     play_again = True
@@ -93,7 +93,8 @@ def main():
             # Handle events
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    pygame.quit()
+                    quit()
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         snake.change_direction(UP)
@@ -151,10 +152,6 @@ def main():
         play_again_rect = play_again_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 100))
         screen.blit(play_again_text, play_again_rect)
         pygame.display.flip()
-
-        # Wait for a moment before getting user input
-        pygame.time.wait(2000)
-
         # Wait for user input to play again or quit
         waiting_for_input = True
         while waiting_for_input:
@@ -165,9 +162,13 @@ def main():
                     elif event.key == pygame.K_n:
                         waiting_for_input = False
                         play_again = False
+                elif event.type == pygame.QUIT:  # Check for the quit event
+                    waiting_for_input = False
+                    play_again = False
 
     # Quit Pygame
     pygame.quit()
+    quit()
 
 if __name__ == "__main__":
     main()
