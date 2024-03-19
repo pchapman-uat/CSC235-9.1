@@ -3,7 +3,7 @@
 - [X] Movement
 - [X] Eating
 - [X] Growing
-- [ ] Ending
-- [ ] End Screen
+- [X] Ending
+- [X] End Screen
 
 BUG: Moving up while going down ends game

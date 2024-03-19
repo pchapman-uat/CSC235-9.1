@@ -64,7 +64,6 @@ class Food:
     def draw(self, surface):
         x, y = self.position
         pygame.draw.rect(surface, RED, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
-
 # Main function
 def main():
     # Set up display
@@ -75,6 +74,9 @@ def main():
     # Initialize game objects
     snake = Snake()
     food = Food()
+
+    # Initialize game variables
+    score = 0
 
     # Main loop
     running = True
@@ -101,6 +103,7 @@ def main():
         if snake.body[0] == food.position:
             snake.grow_snake()
             food = Food()
+            score += 1
 
         # Clear screen
         screen.fill(BLACK)
@@ -114,6 +117,16 @@ def main():
 
         # Cap the frame rate
         clock.tick(FPS)
+
+    # End screen
+    font = pygame.font.Font(None, 36)
+    text = font.render(f"Game Over! Score: {score}", True, WHITE)
+    text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+    screen.blit(text, text_rect)
+    pygame.display.flip()
+
+    # Wait for a moment before quitting
+    pygame.time.wait(2000)
 
     # Quit Pygame
     pygame.quit()
