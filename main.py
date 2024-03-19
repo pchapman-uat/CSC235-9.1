@@ -23,6 +23,7 @@ DOWN = (0, 1)
 LEFT = (-1, 0)
 RIGHT = (1, 0)
 
+
 # Snake class
 class Snake:
     def __init__(self):
@@ -64,12 +65,17 @@ class Food:
     def draw(self, surface):
         x, y = self.position
         pygame.draw.rect(surface, RED, (x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE))
+
 # Main function
 def main():
     # Set up display
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Snake Game")
     clock = pygame.time.Clock()
+
+    # Load apple texture
+    apple_texture = pygame.image.load("apple.jpg").convert_alpha()
+    apple_texture = pygame.transform.scale(apple_texture, (CELL_SIZE, CELL_SIZE))
 
     # Initialize game objects
     snake = Snake()
@@ -106,11 +112,11 @@ def main():
             score += 1
 
         # Clear screen
-        screen.fill(BLACK)
+        screen.fill(WHITE)
 
         # Draw objects
         snake.draw(screen)
-        food.draw(screen)
+        screen.blit(apple_texture, (food.position[0] * CELL_SIZE, food.position[1] * CELL_SIZE))
 
         # Update display
         pygame.display.flip()
@@ -120,7 +126,7 @@ def main():
 
     # End screen
     font = pygame.font.Font(None, 36)
-    text = font.render(f"Game Over! Score: {score}", True, WHITE)
+    text = font.render(f"Game Over! Score: {score}", True, BLACK)
     text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
     screen.blit(text, text_rect)
     pygame.display.flip()
