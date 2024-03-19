@@ -8,4 +8,4 @@
 - [X] Custom Apple texture
 - [X] Play again screen
 - [X] High Score
-- [ ] Close button exiting game
+- [X] Close button exiting game
