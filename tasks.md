@@ -5,5 +5,7 @@
 - [X] Growing
 - [X] Ending
 - [X] End Screen
-- [x] Custome Apple texture
-BUG: Moving up while going down ends game
+- [X] Custom Apple texture
+- [X] Play again screen
+- [X] High Score
+- [ ] Close button exiting game
